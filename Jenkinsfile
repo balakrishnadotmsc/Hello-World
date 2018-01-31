@@ -16,11 +16,11 @@ pipeline {
                 def mvnHome = tool 'Maven'
                 sh "${mvnHome}/bin/mvn clean install"
             }
-            post {
-                success {
+            //post {
+             //   success {
                     //junit 'target/surefire-reports/**/*.xml' 
-                }
-            }
+             //   }
+           // }
         }
     }
 }
