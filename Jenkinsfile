@@ -14,7 +14,9 @@ pipeline {
         stage ('Build') {
             steps {
                 def mvnHome = tool 'Maven'
-                sh "${mvnHome}/bin/mvn clean install"
+                def pom = readMavenPom file: 'pom.xml'
+                def version = pom.version.replace("-SNAPSHOT", ".${currentBuild.number}")
+                sh "${mvnHome}/bin/mvn -DreleaseVersion=${version} -DdevelopmentVersion=${pom.version} -DpushChanges=false -DlocalCheckout=true -DpreparationGoals=initialize release:prepare release:perform -B"
             }
             post {
                 success {
