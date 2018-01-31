@@ -20,7 +20,8 @@ pipeline {
                 echo 'Build Number: ' + env.BUILD_NUMBER
                 echo 'Building Environment: ' + ENV_NAME
                // def mvnHome = tool 'Maven'
-                sh "mvn clean install"
+                //sh "mvn clean install"
+                sh 'mvn -f pom.xml clean install'
             }
          }
     }
