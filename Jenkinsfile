@@ -2,7 +2,6 @@ pipeline {
     agent any
     environment {
         ENV_NAME = "${env.BRANCH_NAME}"
-        mvnHome = tool 'Maven'
     }
     tools {
         maven 'Maven'
@@ -21,7 +20,7 @@ pipeline {
                 echo 'Build Number: ' + env.BUILD_NUMBER
                 echo 'Building Environment: ' + ENV_NAME
                // def mvnHome = tool 'Maven'
-                sh "${mvnHome}/bin/mvn clean install"
+                sh "mvn clean install"
             }
          }
     }
